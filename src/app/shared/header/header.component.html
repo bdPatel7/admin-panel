@@ -1,0 +1,7 @@
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid d-flex justify-content-between">
+      <a class="navbar-brand">Admin</a>
+
+      <button class="btn btn-secondary" *ngIf="isAuthenticated" (click)="logout()">Logout</button>
+    </div>
+  </nav>

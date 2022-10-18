@@ -1,0 +1,68 @@
+<div class="container d-flex align-items-center justify-content-center mt-5">
+    <div class="w-100">
+        <div>
+            <h5 class="mb-4">Employee Lists</h5>
+        </div>
+        <div class="row">
+            <div class="row mb-5">
+                <div  class="row col-10">
+                    <div class="col-6">
+                        <label for="">StartDate</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd"
+                                   name="start" [(ngModel)]="startDate" ngbDatepicker #start="ngbDatepicker" [maxDate]="endDate" readonly>
+                            <button class="btn btn-outline-secondary calendar" (click)="start.toggle()" type="button">
+                                <i class="fa fa-calendar"></i>
+                            </button>
+                        </div>
+                    </div>
+                
+                    <div class="col-6">
+                        <label for="">EndDate</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd"
+                                   name="end" [(ngModel)]="endDate" [minDate]="startDate" ngbDatepicker #end="ngbDatepicker" readonly>
+                            <button class="btn btn-outline-secondary" (click)="end.toggle()" type="button">
+                                <i class="fa fa-calendar"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-primary mr-3" [disabled]="!endDate || !startDate" (click)="filterData()">Filter</button>
+                    <button class="btn btn-warning" (click)="resetData()">
+                        <i class="fa fa-refresh"></i>
+                    </button>
+                </div>
+            </div>
+            <div  *ngIf="filterList.length > 0; else noData">
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th>Employee Name</th>
+                        <th>Date of joining</th>
+                        <th>Department Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let list of filterList">
+                        <td>{{list.ename}}</td>
+                        <td>{{list.doj}}</td>
+                        <td>{{list.dname}}</td>
+                        <td>
+                            <button class="btn btn-warning" [routerLink]="['/employee','view',list.id]">View</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <ng-template #noData>
+                <div>
+                    No Data
+                </div> 
+            </ng-template>
+        </div>
+    </div>
+
+</div>

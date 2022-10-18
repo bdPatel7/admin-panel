@@ -1,0 +1,22 @@
+<div class="container d-flex align-items-center justify-content-center mt-5">
+  <div class="w-50">
+    <form [formGroup]="formGroup">
+      <div class="form-row form-row-pd">
+          <div class="form-group col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 pf pr">
+              <input type="email " class="form-control" id="inputEmail4" formControlName="email" placeholder="email">
+              <ng-container *ngIf="fg.email.touched && fg.email.invalid">
+                  <small *ngIf="fg.email.errors?.required" class="form-text invalid-alert-message">Required</small>
+              </ng-container>
+          </div>
+          <div class="form-group col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 pf pr">
+              <input type="{{isPasswordVisible ? 'text':'password'}}" class="form-control" id="password" formControlName="password" placeholder="password">
+                  <!-- <i class="fa" [ngClass]="this.isPasswordVisible ? 'fa-eye' : 'fa-eye-slash'" aria-hidden="true" (click)="this.isPasswordVisible = !this.isPasswordVisible"></i> -->
+              <ng-container *ngIf="fg.password.touched && fg.password.invalid">
+                  <small *ngIf="fg.password.errors?.required" class="form-text invalid-alert-message">Required</small>
+              </ng-container>
+          </div>
+      </div>
+      <button class="btn btn-primary" [ngClass]="{'disabled' : formGroup.invalid || isSubmitted}" (click)="onLogin()">Login</button>
+    </form>
+  </div>
+</div>
